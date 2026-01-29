@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulrich NEKAM TCHEUDJE - Graphiste Créatif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A0E27;
+            --accent: #FF6B35;
+            --accent-soft: #FFB88C;
+            --text: #2D3142;
+            --text-light: #6B7280;
+            --bg: #FAFAFA;
+            --card: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1f4d 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 184, 140, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--accent-soft);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+            background: #ff5722;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            color: var(--accent-soft);
+            font-size: 2rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--bg);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        #projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .project-card:nth-child(4) .project-image {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .project-card:nth-child(5) .project-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .project-card:nth-child(6) .project-image {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .project-type {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--primary);
+            color: white;
+        }
+
+        #contact .section-title {
+            color: white;
+        }
+
+        #contact .section-title::after {
+            background: linear-gradient(90deg, var(--accent-soft) 0%, white 100%);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            text-align: center;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-soft);
+        }
+
+        /* Footer */
+        footer {
+            background: #06091a;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ulrich NEKAM TCHEUDJE</h1>
+            <p class="hero-subtitle">Graphiste Créatif & Designer Visuel</p>
+            <p class="hero-description">
+                Passionné par la création visuelle, je transforme vos idées en designs percutants 
+                qui captivent et communiquent efficacement votre message.
+            </p>
+            <a href="#contact" class="cta-button">Travaillons Ensemble</a>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">À Propos</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>
+                        Graphiste passionné avec une solide expérience dans la création d'identités visuelles 
+                        marquantes, je combine créativité artistique et expertise technique pour donner vie 
+                        à des projets uniques et mémorables.
+                    </p>
+                    <p>
+                        Mon approche allie recherche esthétique, stratégie de communication et maîtrise 
+                        des outils de design moderne. Chaque projet est une opportunité de raconter une 
+                        histoire visuelle captivante.
+                    </p>
+                    <p>
+                        Spécialisé dans le branding, le design éditorial et la création de supports 
+                        publicitaires, je mets mon expertise au service de votre vision.
+                    </p>
+                </div>
+                <div class="about-image fade-in">
+                    🎨
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Design Graphique</h3>
+                    <p>Création de logos, identités visuelles, chartes graphiques et supports de communication</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">📱</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Conception d'interfaces utilisateur intuitives et expériences digitales engageantes</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">✏️</div>
+                    <h3>Illustration</h3>
+                    <p>Création d'illustrations originales, icônes personnalisées et éléments visuels uniques</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">📐</div>
+                    <h3>Mise en Page</h3>
+                    <p>Design éditorial, brochures, magazines, rapports annuels et supports print</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🎬</div>
+                    <h3>Motion Design</h3>
+                    <p>Animations graphiques, vidéos promotionnelles et contenus dynamiques</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🖼️</div>
+                    <h3>Retouche Photo</h3>
+                    <p>Traitement d'images, photomontages et optimisation visuelle professionnelle</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Projets Récents</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🏢</div>
+                    <div class="project-content">
+                        <p class="project-type">Identité Visuelle</p>
+                        <h3>Refonte de marque</h3>
+                        <p>Création complète d'une identité visuelle moderne incluant logo, charte graphique et supports de communication.</p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <p class="project-type">Design Digital</p>
+                        <h3>Application Mobile</h3>
+                        <p>Conception UI/UX d'une application mobile avec focus sur l'expérience utilisateur et l'ergonomie.</p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">📰</div>
+                    <div class="project-content">
+                        <p class="project-type">Design Éditorial</p>
+                        <h3>Magazine Culturel</h3>
+                        <p>Mise en page et direction artistique d'un magazine culturel de 60 pages avec typographie soignée.</p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🎭</div>
+                    <div class="project-content">
+                        <p class="project-type">Affiche</p>
+                        <h3>Campagne Événementielle</h3>
+                        <p>Série d'affiches promotionnelles pour un événement culturel avec identité visuelle forte.</p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🛍️</div>
+                    <div class="project-content">
+                        <p class="project-type">Packaging</p>
+                        <h3>Design Produit</h3>
+                        <p>Conception de packaging innovant alliant esthétique et fonctionnalité pour une marque locale.</p>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🎬</div>
+                    <div class="project-content">
+                        <p class="project-type">Motion Design</p>
+                        <h3>Vidéo Promotionnelle</h3>
+                        <p>Animation graphique dynamique pour une campagne publicitaire sur les réseaux sociaux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Contact</h2>
+            <div class="contact-content fade-in">
+                <p>Intéressé par une collaboration ? N'hésitez pas à me contacter pour discuter de votre projet !</p>
+                <div class="contact-info">
+                    <a href="mailto:votre.email@example.com" class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>votre.email@example.com</span>
+                    </a>
+                    <a href="tel:+237XXXXXXXXX" class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>+237 XXX XXX XXX</span>
+                    </a>
+                    <a href="#" class="contact-item">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="contact-item">
+                        <span class="contact-icon">🎨</span>
+                        <span>Behance / Portfolio</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Ulrich NEKAM TCHEUDJE. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
